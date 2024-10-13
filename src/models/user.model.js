@@ -29,16 +29,16 @@ const userSchema = new Schema(
         },
         avatar: {
             type: String,
-            require: true,
+             require: true,
         },
         coverImage: {
             type: String,
-            require: true,
         },
-        watchHistory: {
+        watchHistory: [
+            {
             type: Schema.Types.ObjectId,
             ref: "Video"
-        },
+    }],
         password: {
             type: String,
             require: [true, "password is required"],
@@ -51,10 +51,8 @@ const userSchema = new Schema(
 }
 
 )
-
-
 userSchema.pre("save", async function (next) {
-    if (!this.ismodified("password")) return next();
+    if (!this.isModified("password")) return next();
     this.password = await bcrypt.hash(this.password, 10)
     next()
 })

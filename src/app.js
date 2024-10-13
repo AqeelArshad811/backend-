@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));// recieving data from urls
 app.use(express.static("public"));
 app.use(cookieParser()); // recieving data from cookies 
 
-app.use("/users", userRouter);
+app.use("/api/v1/users", userRouter);
 
 // app.get("/user", (req, res) => {
 //   res.send("hello user")
